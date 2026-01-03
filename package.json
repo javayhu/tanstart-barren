@@ -18,6 +18,8 @@
     "auth:secret": "bunx @better-auth/cli@latest secret",
     "auth:generate": "bunx @better-auth/cli@latest generate --config ./src/lib/auth/auth.ts --y --output ./src/lib/db/schema/auth.schema.ts && biome format --write ./src/lib/db/schema/auth.schema.ts",
     "clean": "rm -rf .nitro && rm -rf .tanstack && rm -rf .output",
+    "compose:db:up": "docker compose -f docker/standalone-db-compose.yaml up -d",
+    "compose:db:down": "docker compose -f docker/standalone-db-compose.yaml down -v",
     "prepare": "husky"
   },
   "dependencies": {
