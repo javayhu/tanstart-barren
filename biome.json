@@ -1,8 +1,13 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
     "ignoreUnknown": false,
-    "includes": ["src/**", "!**/*.gen.ts", "!src/lib/db/migrations/*", "!bun.lock"]
+    "includes": [
+      "src/**",
+      "!**/*.gen.ts",
+      "!src/lib/db/migrations/*",
+      "!bun.lock"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -63,5 +68,10 @@
         }
       }
     }
-  }
+  },
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/react",
+    "ultracite/biome/remix"
+  ]
 }

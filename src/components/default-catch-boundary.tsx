@@ -22,30 +22,30 @@ export function DefaultCatchBoundary({ error }: Readonly<ErrorComponentProps>) {
       <ErrorComponent error={error} />
       <div className="flex flex-wrap items-center gap-2">
         <Button
-          type="button"
           onClick={() => {
             router.invalidate();
           }}
+          type="button"
         >
           Try Again
         </Button>
         {isRoot ? (
-          <Button render={<Link to="/" />} variant="secondary" nativeButton={false}>
+          <Button nativeButton={false} render={<Link to="/" />} variant="secondary">
             Home
           </Button>
         ) : (
           <Button
+            nativeButton={false}
             render={
               <Link
-                to="/"
                 onClick={(e) => {
                   e.preventDefault();
                   window.history.back();
                 }}
+                to="/"
               />
             }
             variant="secondary"
-            nativeButton={false}
           >
             Go Back
           </Button>

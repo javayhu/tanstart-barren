@@ -31,11 +31,11 @@ export function SignInSocialButton(props: SocialLoginButtonProps) {
 
   return (
     <Button
-      variant="outline"
       className="w-full"
-      type="button"
       disabled={mutation.isSuccess || mutation.isPending || props.disabled}
       onClick={() => mutation.mutate()}
+      type="button"
+      variant="outline"
     >
       {props.icon}
       Login with {providerLabel}

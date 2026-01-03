@@ -9,6 +9,7 @@ export function SignOutButton() {
   const router = useRouter();
   return (
     <Button
+      className="w-fit"
       onClick={async () => {
         await authClient.signOut({
           fetchOptions: {
@@ -20,10 +21,9 @@ export function SignOutButton() {
           },
         });
       }}
-      type="button"
-      className="w-fit"
-      variant="destructive"
       size="lg"
+      type="button"
+      variant="destructive"
     >
       Sign out
     </Button>
