@@ -14,7 +14,7 @@ function HomePage() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-10 p-2">
       <div className="flex flex-col items-center gap-4">
-        <h1 className="font-bold text-3xl sm:text-4xl">React TanStarter</h1>
+        <h1 className="font-bold text-3xl sm:text-4xl">Tanstart Barren</h1>
         <div className="flex items-center gap-2 text-foreground/80 text-sm max-sm:flex-col">
           This is an unprotected page:
           <pre className="rounded-md border bg-card p-1 text-card-foreground">routes/index.tsx</pre>
@@ -27,7 +27,7 @@ function HomePage() {
 
       <div className="flex flex-col items-center gap-2">
         <p className="text-foreground/80 max-sm:text-xs">
-          A minimal starter template for{' '}
+          A starter template for{' '}
           <a
             className="group text-foreground"
             href="https://tanstack.com/start/latest"
@@ -41,12 +41,12 @@ function HomePage() {
         <div className="flex items-center gap-3">
           <a
             className="text-foreground/80 underline hover:text-foreground max-sm:text-sm"
-            href="https://github.com/dotnize/react-tanstarter"
+            href="https://github.com/thelordoftheboards/tanstart-barren"
             rel="noreferrer noopener"
             target="_blank"
             title="Template repository on GitHub"
           >
-            dotnize/react-tanstarter
+            thelordoftheboards/tanstart-barren
           </a>
 
           <ThemeToggle />
