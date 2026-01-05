@@ -1,6 +1,6 @@
 {
   "name": "tanstart-barren",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "private": false,
   "type": "module",
   "author": {
@@ -33,10 +33,10 @@
     "docker:setup": ". ./devconfig/docker-settings.sh && docker network create \"${IMAGE_NAME}-development-network\"",
     "docker:build": "./devtools/docker-build.sh",
     "docker:run": ". ./devconfig/docker-settings.sh && docker rm -f \"${IMAGE_NAME}-standalone-app\" || true && docker run -d -p 8088:8088 --env-file .env --network \"${IMAGE_NAME}-development-network\" --name \"${IMAGE_NAME}-standalone-app\" \"${IMAGE_NAME}\"",
-    "compose:db:up": "docker compose -f docker/standalone-db-compose.yaml up -d",
-    "compose:db:down": "docker compose -f docker/standalone-db-compose.yaml down -v",
-    "compose:full:up": "docker compose -f docker/full-compose.yaml up -d",
-    "compose:full:down": "docker compose -f docker/full-compose.yaml down -v",
+    "compose:db:up": "docker compose --env-file devconfig/standalone-db.env -f docker/standalone-db-compose.yaml up -d",
+    "compose:db:down": "docker compose --env-file devconfig/standalone-db.env -f docker/standalone-db-compose.yaml down -v",
+    "compose:full:up": "docker compose --env-file devconfig/full.env -f docker/full-compose.yaml up -d",
+    "compose:full:down": "docker compose --env-file devconfig/full.env -f docker/full-compose.yaml down -v",
     "docker:remove": ". ./devconfig/docker-settings.sh && docker network rm \"${IMAGE_NAME}-development-network\"",
     "clean": "rm -rf .nitro && rm -rf .tanstack && rm -rf .output",
     "prepare": "husky"

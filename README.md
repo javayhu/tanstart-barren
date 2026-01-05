@@ -43,7 +43,7 @@ bun i
 
 ### Create a Database
 
-Postgres 18 with vector extensions is required. Included is a docker compose to set one up. Use [`doc/standalone-db.env.example`](doc/standalone-db.env.example) to create [`docker/standalone-db.env`](docker/standalone-db.env) and run:
+Postgres 18 with vector extensions is required. Included is a docker compose to set one up. Use [`doc/standalone-db.env.example`](doc/standalone-db.env.example) to create [`devconfig/standalone-db.env`](devconfig/standalone-db.env) and run:
 
 ```bash
 bun compose:db:up
