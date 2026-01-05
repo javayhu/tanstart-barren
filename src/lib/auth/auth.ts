@@ -4,6 +4,7 @@ import { betterAuth } from 'better-auth/minimal';
 import { tanstackStartCookies } from 'better-auth/tanstack-start';
 import { v7 as uuidv7 } from 'uuid';
 import { db } from '~/lib/db';
+// biome-ignore lint/performance/noNamespaceImport: Allow
 import * as schema from '~/lib/db/schema/auth.schema';
 import { env } from '~/lib/env.server';
 

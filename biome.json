@@ -6,7 +6,8 @@
       "src/**",
       "!**/*.gen.ts",
       "!src/lib/db/migrations/*",
-      "!bun.lock"
+      "!bun.lock",
+      "!src/components/*"
     ]
   },
   "formatter": {

@@ -1,2 +1,3 @@
+/** biome-ignore-all lint/performance/noBarrelFile: Allow */
+
 export * from './auth.schema';
-// export your other schemas here

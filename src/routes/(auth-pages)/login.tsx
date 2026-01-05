@@ -38,13 +38,17 @@ function LoginForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isPending) return;
+    if (isPending) {
+      return;
+    }
 
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
-    if (!(email && password)) return;
+    if (!(email && password)) {
+      return;
+    }
 
     emailLoginMutate({ email, password });
   };
