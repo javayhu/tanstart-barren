@@ -43,7 +43,23 @@ bun i
 
 ### Create a Database
 
-Postgres 18 with vector extensions is required. Included is a docker compose to set one up. Use [`doc/standalone-db.env.example`](doc/standalone-db.env.example) to create [`devconfig/standalone-db.env`](devconfig/standalone-db.env) and run:
+Postgres 18 with vector extensions is required. You can set up your own database, or use docker compose as described:
+
+* Use [`doc/standalone-db.env.example`](doc/standalone-db.env.example) to create [`devconfig/standalone-db.env`](devconfig/standalone-db.env).
+
+* Using the setting you specified for `PROJECT_NAME`, create a docker network:
+
+```bash
+docker network create ${PROJECT_NAME}-standalone-db-network
+```
+
+Example for `PROJECT_NAME` being `my-project`:
+
+```bash
+docker network create my-project-standalone-db-network
+```
+
+* Compose up the database container:
 
 ```bash
 bun compose:db:up
@@ -52,17 +68,32 @@ bun compose:db:up
 
 ### Create an `.env` File
 
-Use example [`doc/.env.example`](doc/.env.example).
-
-
-
-### Push the schema to your database with drizzle-kit:
+Use example [`doc/.env.example`](doc/.env.example). If using the provided copose postgres container, the `DATABASE_URL` will be:
 
 ```bash
-bun db push
+DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:${POSTGRES_EXPOSED_PORT}/${POSTGRES_DB}
 ```
 
-[Drizzle Migrations](https://orm.drizzle.team/docs/migrations).
+for instance
+
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/database-name
+```
+
+
+### Generate the schema to your database with drizzle-kit:
+
+```bash
+bun db:generate
+```
+
+You can also push the schema to your database with drizzle-kit:
+
+```bash
+bun db:push
+```
+
+Alternatively, if the environment variable `DATABASE_AUTOMATIC_MIGRATIONS=enabled`, the application will perform migrations when started in development mode, or upon the first request that is recevied in production. For more details [Drizzle Migrations](https://orm.drizzle.team/docs/migrations).
 
 
 
@@ -81,6 +112,17 @@ The development server should now be running at [http://localhost:8088](http://l
 The [vite config](./vite.config.ts#L12-L13) is currently configured to use [Nitro v3](https://v3.nitro.build) (nightly) to deploy on Vercel, but can be easily switched to other providers.
 
 Refer to the [TanStack Start hosting docs](https://tanstack.com/start/latest/docs/framework/react/guide/hosting) for deploying to other platforms.
+
+
+
+## Deploying using Dokploy
+
+In addition to the using variables in `.env` add the following to the environment settings, where the domain is specified to be the domain you will be serving from:
+
+```bash
+NODE_ENV=PRODUCTION
+SERVER_HOST=example.com
+```
 
 
 
