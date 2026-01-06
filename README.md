@@ -120,8 +120,15 @@ Refer to the [TanStack Start hosting docs](https://tanstack.com/start/latest/doc
 In addition to the using variables in `.env` add the following to the environment settings, where the domain is specified to be the domain you will be serving from:
 
 ```bash
-NODE_ENV=PRODUCTION
+NODE_ENV=production
 SERVER_HOST=example.com
+```
+
+Also, in order for the build assets to get properly added to the repository, `.gitignore` will have to be modified:
+
+```bash
+# In our case to we use the .output directory to build the container so it is required in source
+#.output
 ```
 
 
