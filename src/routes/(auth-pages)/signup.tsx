@@ -8,7 +8,7 @@ import { SignInSocialButton } from '~/components/sign-in-social-button';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
-import authClient from '~/lib/auth/auth-client';
+import { authClient } from '~/lib/auth/auth-client';
 import { authQueryOptions } from '~/lib/auth/queries';
 
 export const Route = createFileRoute('/(auth-pages)/signup')({

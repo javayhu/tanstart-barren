@@ -19,8 +19,6 @@ function getCurrentBaseUrl(): string {
   return process.env.SERVER_URL;
 }
 
-const authClient = createAuthClient({
+export const authClient = createAuthClient({
   baseURL: getCurrentBaseUrl(), // Replaces the traditional env.VITE_SERVER_URL
 });
-
-export default authClient;

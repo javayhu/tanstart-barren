@@ -6,7 +6,7 @@ import { ThemeToggle } from '~/components/theme-toggle';
 import { Button } from '~/components/ui/button';
 import { authQueryOptions } from '~/lib/auth/queries';
 
-export function HomePage() {
+export function PageHome() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-10 p-2">
       <div className="flex flex-col items-center gap-4">

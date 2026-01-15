@@ -1,7 +1,7 @@
 import { SignOutButton } from '~/components/sign-out-button';
 import { SelectUserType } from '~/lib/db/schema/auth.schema';
 
-export function DashboardIndexContent({ user }: { user: SelectUserType }) {
+export function PageDashboardIndex({ user }: { user: SelectUserType }) {
   return (
     <div className="flex flex-col items-center gap-1">
       Dashboard index page

@@ -8,7 +8,7 @@ import { SignInSocialButton } from '~/components/sign-in-social-button';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
-import authClient from '~/lib/auth/auth-client';
+import { authClient } from '~/lib/auth/auth-client';
 
 export const Route = createFileRoute('/(auth-pages)/login')({
   component: LoginForm,
@@ -116,8 +116,7 @@ function LoginForm() {
             />
             <SignInSocialButton
               callbackURL={redirectUrl}
-              disabled={true}
-              // disabled={isPending}
+              disabled={isPending}
               icon={
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <title>Google logo</title>
@@ -126,7 +125,7 @@ function LoginForm() {
                     fill="currentColor"
                   />
                 </svg>
-              } // TODO disabled just for the preview deployment at https://tanstarter.nize.ph
+              }
               provider="google"
             />
           </div>
