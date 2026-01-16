@@ -120,9 +120,26 @@ The development server should now be running at [http://localhost:8088](http://l
 
 ## Deploying to production
 
-The [vite config](./vite.config.ts#L12-L13) is currently configured to use [Nitro v3](https://v3.nitro.build) (nightly) to deploy on Vercel, but can be easily switched to other providers.
+The [vite config](./vite.config.ts#L15-L16) is currently configured to use [Nitro v3](https://v3.nitro.build) (nightly) to deploy on Vercel, but can be easily switched to other providers.
 
 Refer to the [TanStack Start hosting docs](https://tanstack.com/start/latest/docs/framework/react/guide/hosting) for deploying to other platforms.
+
+
+
+## Using Docker
+
+Create [docker-settings.sh](./devconfig/docker-settings.sh) following the example in [docker-settings.sh.example](./doc/docker-settings.sh.example).
+
+Scripts:
+
+- **`docker:setup`** - Creates common docker objects used by the project. Run once before using the other scripts.
+- **`ocker:build`** - Builds a dockerized version of the application.
+- **`docker:run`** - Runs the built version.
+- **`compose:db:up`** - Starts a database that can be used by `bun run`.
+- **`compose:db:down`** - Destroys the database used by `bun run`.
+- **`compose:full:up`** - Starts the database and app server together.
+- **`compose:full:down`** - Destroys the database and app server together.
+- **`docker:remove`** - Removes (some) of the docker objects created for the project.
 
 
 
@@ -135,11 +152,26 @@ NODE_ENV=production
 SERVER_HOST=example.com
 ```
 
-Also, in order for the build assets to get properly added to the repository, `.gitignore` will have to be modified:
+Also, if you wish to store the build in the repositoru, in order for the build assets to get properly added to the repository, `.gitignore` will have to be modified:
 
 ```bash
 # In our case to we use the .output directory to build the container so it is required in source
 #.output
+```
+
+Also modify `docker-build.sh`:
+
+```bash
+# Uncomment for the build to be happening outisde of docker
+# Run make if the versions do not match
+if [ "${PACKAGE_VERSION}" != "${PACKAGE_VERSION_OUTPUT}" ]; then
+    echo "Version mismatch, running make ..."
+    (cd ${SCRIPT_DIR}/.. && bun run make)
+    echo "Make complete."
+else
+    # Commands to execute if they are the same (optional 'else' block)
+    echo "Versions match, proceeding to build container."
+fi
 ```
 
 For the database server the recommended image is `pgvector/pgvector:pg18` and the the mount `/var/lib/postgresql`
@@ -179,23 +211,6 @@ Use one of the following scripts:
 - **`lt`** - serve through localtunnel in a separate process.
 - **`dev-lt`** - run development concurrently with serving through localtunnel, might have issues.
 - **`start-lt`** - run development concurrently with serving through localtunnel, should perform well.
-
-
-
-## Using Docker
-
-Create [docker-settings.sh](./devconfig/docker-settings.sh) following the example in [docker-settings.sh.example](./doc/docker-settings.sh.example).
-
-Scripts:
-
-- **`docker:setup`** - Creates common docker objects used by the project. Run once before using the other scripts.
-- **`ocker:build`** - Builds a dockerized version of the application.
-- **`docker:run`** - Runs the built version.
-- **`compose:db:up`** - Starts a database that can be used by `bun run`.
-- **`compose:db:down`** - Destroys the database used by `bun run`.
-- **`compose:full:up`** - Starts the database and app server together.
-- **`compose:full:down`** - Destroys the database and app server together.
-- **`docker:remove`** - Removes (some) of the docker objects created for the project.
 
 
 

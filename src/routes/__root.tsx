@@ -3,6 +3,7 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
 import React from 'react';
+import { meta } from '~/base-config/root-meta';
 import { ThemeProvider } from '~/components/theme-provider';
 import { Toaster } from '~/components/ui/sonner';
 import { type AuthQueryResult, authQueryOptions } from '~/lib/auth/queries';
@@ -22,22 +23,7 @@ export const Route = createRootRouteWithContext<{
     // for protected routes with loader data, see /(authenticated)/route.tsx
   },
   head: () => ({
-    meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: 'React TanStarter',
-      },
-      {
-        name: 'description',
-        content: 'A minimal starter template for 🏝️ TanStack Start.',
-      },
-    ],
+    meta,
     links: [{ rel: 'stylesheet', href: appCss }],
   }),
   component: RootComponent,

@@ -28,7 +28,7 @@ COPY . .
 # [optional] tests & build
 #ENV NODE_ENV=production
 #RUN bun test
-#RUN bun run make
+RUN bun run make
 
 # copy production dependencies and source code into final image
 FROM base AS release
