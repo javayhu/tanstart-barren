@@ -1,6 +1,6 @@
 {
   "name": "tanstart-barren",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "private": false,
   "type": "module",
   "author": {
@@ -62,11 +62,11 @@
     "react-dom": "19.2.3",
     "react-hook-form": "7.71.1",
     "redaxios": "0.5.1",
-    "shadcn": "3.6.3",
+    "shadcn": "3.7.0",
     "sonner": "2.0.7",
     "tailwind-merge": "3.4.0",
     "uuid": "13.0.0",
-    "vite": "8.0.0-beta.7",
+    "vite": "8.0.0-beta.8",
     "zod": "4.3.5"
   },
   "devDependencies": {
