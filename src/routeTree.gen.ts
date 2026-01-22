@@ -17,6 +17,7 @@ import { Route as authPagesLoginRouteImport } from './routes/(auth-pages)/login'
 import { Route as authenticatedDashboardRouteRouteImport } from './routes/(authenticated)/dashboard/route'
 import { Route as authenticatedDashboardIndexRouteImport } from './routes/(authenticated)/dashboard/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ApiV1SystemGlobalClientSettingsIndexRouteImport } from './routes/api/v1/system/global-client-settings/index'
 
 const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
   id: '/(authenticated)',
@@ -58,6 +59,12 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiV1SystemGlobalClientSettingsIndexRoute =
+  ApiV1SystemGlobalClientSettingsIndexRouteImport.update({
+    id: '/api/v1/system/global-client-settings/',
+    path: '/api/v1/system/global-client-settings/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof authPagesSignupRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/dashboard/': typeof authenticatedDashboardIndexRoute
+  '/api/v1/system/global-client-settings': typeof ApiV1SystemGlobalClientSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -73,6 +81,7 @@ export interface FileRoutesByTo {
   '/signup': typeof authPagesSignupRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/dashboard': typeof authenticatedDashboardIndexRoute
+  '/api/v1/system/global-client-settings': typeof ApiV1SystemGlobalClientSettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -84,6 +93,7 @@ export interface FileRoutesById {
   '/(auth-pages)/signup': typeof authPagesSignupRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(authenticated)/dashboard/': typeof authenticatedDashboardIndexRoute
+  '/api/v1/system/global-client-settings/': typeof ApiV1SystemGlobalClientSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -94,8 +104,15 @@ export interface FileRouteTypes {
     | '/signup'
     | '/api/auth/$'
     | '/dashboard/'
+    | '/api/v1/system/global-client-settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup' | '/api/auth/$' | '/dashboard'
+  to:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/api/auth/$'
+    | '/dashboard'
+    | '/api/v1/system/global-client-settings'
   id:
     | '__root__'
     | '/'
@@ -106,6 +123,7 @@ export interface FileRouteTypes {
     | '/(auth-pages)/signup'
     | '/api/auth/$'
     | '/(authenticated)/dashboard/'
+    | '/api/v1/system/global-client-settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -113,6 +131,7 @@ export interface RootRouteChildren {
   authPagesRouteRoute: typeof authPagesRouteRouteWithChildren
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  ApiV1SystemGlobalClientSettingsIndexRoute: typeof ApiV1SystemGlobalClientSettingsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -173,6 +192,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/v1/system/global-client-settings/': {
+      id: '/api/v1/system/global-client-settings/'
+      path: '/api/v1/system/global-client-settings'
+      fullPath: '/api/v1/system/global-client-settings'
+      preLoaderRoute: typeof ApiV1SystemGlobalClientSettingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -221,6 +247,8 @@ const rootRouteChildren: RootRouteChildren = {
   authPagesRouteRoute: authPagesRouteRouteWithChildren,
   authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  ApiV1SystemGlobalClientSettingsIndexRoute:
+    ApiV1SystemGlobalClientSettingsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
